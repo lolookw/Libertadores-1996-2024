@@ -2,7 +2,7 @@ equipo,pais,ciudad,estadio_principal,fuente_referencia,notas
 América,Colombia,Cali,Pascual Guerrero,Dimayor,Mapeado a América de Cali
 Atlético Junior,Colombia,Barranquilla,Metropolitano Roberto Meléndez,Dimayor,Mapeado a Junior FC
 Barcelona,Ecuador,Guayaquil,Monumental Banco Pichincha,FEF,Mapeado a Barcelona SC
-Botafogo,Brasil,Río de Janeiro,Nilton Santos,CBF,
+Botafogo de Futebol e Regatas,Brasil,Río de Janeiro,Nilton Santos,CBF,
 Caracas F.C.,Venezuela,Caracas,Olímpico de la UCV,FVF,Mapeado a Caracas FC
 Cerro Porteño,Paraguay,Asunción,General Pablo Rojas,APF,La Nueva Olla
 Corinthians,Brasil,São Paulo,Neo Química Arena,CBF,
@@ -29,7 +29,7 @@ América Mineiro,Brasil,Belo Horizonte,Independência,CBF,
 América de Cali,Colombia,Cali,Pascual Guerrero,Dimayor,
 Argentinos Jrs,Argentina,Buenos Aires,Diego Armando Maradona,AFA,Mapeado a Argentinos Juniors
 Argentinos Juniors,Argentina,Buenos Aires,Diego Armando Maradona,AFA,
-Arsenal,Argentina,Sarandí,Julio Humberto Grondona,AFA,Mapeado a Arsenal de Sarandí
+Arsenal de Sarandí,Argentina,Sarandí,Julio Humberto Grondona,AFA,Mapeado a Arsenal de Sarandí
 Athl. Paranaense,Brasil,Curitiba,Ligga Arena,CBF,Mapeado a Athletico Paranaense
 Athletico Paranaense,Brasil,Curitiba,Ligga Arena,CBF,
 Atl. Colegiales,Paraguay,Lambaré,Luciano Zacarías,APF,Mapeado a Atlético Colegiales
@@ -96,10 +96,7 @@ Deportivo Táchira,Venezuela,San Cristóbal,Polideportivo de Pueblo Nuevo,FVF,
 Deportivo Táchira FC,Venezuela,San Cristóbal,Polideportivo de Pueblo Nuevo,FVF,
 El Nacional,Ecuador,Quito,Olímpico Atahualpa,FEF,
 Emelec,Ecuador,Guayaquil,George Capwell,FEF,
-Estudiantes,Argentina,La Plata,Jorge Luis Hirschi,AFA,Mapeado a Estudiantes de La Plata
-Estudiantes LP,Argentina,La Plata,Jorge Luis Hirschi,AFA,Mapeado a Estudiantes de La Plata
-Estudiantes de LP,Argentina,La Plata,Jorge Luis Hirschi,AFA,Mapeado a Estudiantes de La Plata
-Estudiantes-LP,Argentina,La Plata,Jorge Luis Hirschi,AFA,Mapeado a Estudiantes de La Plata
+Estudiantes de La Plata,Argentina,La Plata,Jorge Luis Hirschi,AFA,Mapeado a Estudiantes de La Plata
 Everton,Chile,Viña del Mar,Sausalito,ANFP,
 FBC Melgar,Perú,Arequipa,Monumental de la UNSA,FPF,Mapeado a Melgar
 Flamengo,Brasil,Río de Janeiro,Maracanã,CBF,
@@ -190,7 +187,7 @@ Santo Andre,Brasil,Santo André,Bruno José Daniel,CBF,
 Santos,Brasil,Santos,Vila Belmiro,CBF,
 Santos FC,Brasil,Santos,Vila Belmiro,CBF,Mapeado a Santos
 Santos Laguna,México,Torreón,Corona,Liga MX,
-Sport (Recife),Brasil,Recife,Ilha do Retiro,CBF,Mapeado a Sport Recife
+Sport Recife,Brasil,Recife,Ilha do Retiro,CBF,Mapeado a Sport Recife
 Sport Boys,Perú,Callao,Miguel Grau,FPF,
 Sport Boys Warnes,Bolivia,Warnes,Samuel Vaca Jiménez,FBF,
 Sportivo Luqueño,Paraguay,Luque,Feliciano Cáceres,APF,
@@ -207,7 +204,7 @@ Trujillanos,Venezuela,Valera,José Alberto Pérez,FVF,
 Tuluá,Colombia,Tuluá,Doce de Octubre,Dimayor,Cortuluá
 Táchira,Venezuela,San Cristóbal,Polideportivo de Pueblo Nuevo,FVF,Mapeado a Deportivo Táchira
 U. San Martín,Perú,Lima,Monumental U,FPF,Mapeado a Universidad San Martín
-U. de Deportes,Perú,Lima,Monumental U,FPF,Mapeado a Universitario de Deportes
+Universitario de Deportes,Perú,Lima,Monumental U,FPF,Mapeado a Universitario de Deportes
 UA Maracaibo,Venezuela,Maracaibo,José Encarnación Romero,FVF,
 Univ. Los Andes,Venezuela,Mérida,Guillermo Soto Rosa,FVF,
 Univ. San Martín,Perú,Lima,Monumental U,FPF,Mapeado a Universidad San Martín
