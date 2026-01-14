@@ -2,7 +2,7 @@ from pathlib import Path
 import pandas as pd
 
 
-RUTA_DATOS = "datos/crudos/ejemplo_partidos_mock.csv"
+RUTA_DATOS = "datos/intermedios/partidos_rsssf.csv"
 CARPETA_REPORTES_QA = Path("reportes/qa")
 CARPETA_PROCESADOS = Path("datos/procesados")
 
@@ -131,8 +131,8 @@ def main():
     df_validos = df.drop(index=sorted(indices_invalidos)).copy()
 
     CARPETA_PROCESADOS.mkdir(parents=True, exist_ok=True)
-    df_validos.to_csv(CARPETA_PROCESADOS / "partidos_mock_validos.csv", index=False)
-    df_invalidos.to_csv(CARPETA_PROCESADOS / "partidos_mock_invalidos.csv", index=False)
+    df_validos.to_csv(CARPETA_PROCESADOS / "partidos_rsssf1_validos.csv", index=False)
+    df_invalidos.to_csv(CARPETA_PROCESADOS / "partidos_rsssf1_invalidos.csv", index=False)
 
     # Resumen
     print("=== QA DATASET LIBERTADORES (MOCK) ===\n")
