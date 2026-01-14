@@ -2,11 +2,13 @@
 
 ## QA estructural
 
-- No deben existir filas duplicadas según:
+- No deben existir filas duplicadas según la clave:
   - temporada
   - fecha
   - equipo_local
   - equipo_visitante
+
+- Los registros duplicados se consideran **inválidos** y se excluyen del dataset procesado.
 
 - Tipos de datos:
   - temporada: entero entre 1996 y 2024
@@ -14,10 +16,18 @@
 
 ## QA lógica
 
+- El campo `resultado` se normaliza antes de validarse:
+  - "Local" → "L"
+  - "Visitante" → "V"
+  - "Empate" → "E"
+
+- Valores fuera de este dominio se consideran inválidos.
+
 - El campo `resultado` debe ser consistente:
   - goles_local > goles_visitante → "L"
   - goles_local < goles_visitante → "V"
   - goles_local = goles_visitante → "E"
+  
 
 ## QA de consistencia
 
@@ -32,5 +42,16 @@
 
 ## Manejo de errores
 
-- Los registros que violen reglas críticas no se incluyen en el dataset final
-- Los errores deben registrarse para revisión manual
+- Las reglas de QA se aplican de forma automática sobre el dataset de entrada.
+
+- Los registros que violen una o más reglas de QA se consideran **inválidos**:
+  - No se incluyen en el dataset procesado final.
+  - Se guardan en un archivo separado para revisión manual.
+
+- El dataset procesado contiene únicamente registros válidos.
+
+- El pipeline solo se detiene ante errores críticos de estructura, como:
+  - Columnas obligatorias faltantes.
+  - Imposibilidad de leer el archivo de entrada.
+  - Fechas no parseables de forma masiva.
+
