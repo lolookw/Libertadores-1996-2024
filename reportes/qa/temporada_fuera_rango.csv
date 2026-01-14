@@ -1,0 +1,3 @@
+temporada,competicion,fase,instancia,fecha,pais_sede,ciudad_sede,estadio,equipo_local,equipo_visitante,pais_local,pais_visitante,goles_local,goles_visitante,resultado,fuente,url_fuente,id_partido_fuente,observaciones,resultado_norm,fecha_parseada
+1995,Copa Libertadores,Grupos,1,1995-09-20,Paraguay,Asunción,Defensores del Chaco,Cerro Porteño,Olimpia,Paraguay,Paraguay,1,1,Empate,CONMEBOL,www.conmebol.com,LIB1995001,Fecha fuera del rango: antes de 1996,E,1995-09-20
+2025,Copa Libertadores,Grupos,1,2025-02-05,Argentina,Buenos Aires,Monumental,Boca Juniors,River Plate,Argentina,Argentina,2,1,Local,CONMEBOL,www.conmebol.com,LIB2025001,Fecha fuera del rango: despues de 2024,L,2025-02-05
