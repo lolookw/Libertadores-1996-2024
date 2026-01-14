@@ -1,0 +1,32 @@
+temporada,competicion,fase,instancia,fecha,pais_sede,ciudad_sede,estadio,equipo_local,equipo_visitante,pais_local,pais_visitante,goles_local,goles_visitante,resultado,fuente,url_fuente,id_partido_fuente,observaciones
+1996,Copa Libertadores,Grupos,1,1996-02-15,Paraguay,Asunción,Defensores del Chaco,Olimpia,Cerro Porteño,Paraguay,Paraguay,2,1,Local,CONMEBOL,www.conmebol.com,LIB1996001,
+1996,Copa Libertadores,Grupos,1,1996-02-18,Argentina,Buenos Aires,Monumental,River Plate,Boca Juniors,Argentina,Argentina,1,1,Empate,CONMEBOL,www.conmebol.com,LIB1996002,
+1996,Copa Libertadores,Grupos,2,1996-03-05,Brasil,Sao Paulo,Morumbi,Sao Paulo FC,Palmeiras,Brasil,Brasil,3,0,Local,CONMEBOL,www.conmebol.com,LIB1996003,
+1996,Copa Libertadores,Grupos,2,1996-03-10,Colombia,Bogota,El Campín,Millonarios,Santa Fe,Colombia,Colombia,1,2,Visitante,CONMEBOL,www.conmebol.com,LIB1996004,
+1996,Copa Libertadores,Grupos,3,1996-03-15,Uruguay,Montevideo,Centenario,Peñarol,Nacional,Uruguay,Uruguay,0,0,Empate,CONMEBOL,www.conmebol.com,LIB1996005,
+2000,Copa Libertadores,Grupos,1,2000-04-20,Paraguay,Asunción,Defensores del Chaco,Olimpia,Libertad,Paraguay,Paraguay,2,1,Local,CONMEBOL,www.conmebol.com,LIB2000001,
+2005,Copa Libertadores,Eliminatorias,Octavos Ida,2005-05-10,Brasil,Rio de Janeiro,Maracanã,Flamengo,Sao Paulo FC,Brasil,Brasil,1,0,Local,CONMEBOL,www.conmebol.com,LIB2005001,
+2005,Copa Libertadores,Eliminatorias,Octavos Vuelta,2005-05-24,Brasil,Sao Paulo,Morumbi,Sao Paulo FC,Flamengo,Brasil,Brasil,2,0,Local,CONMEBOL,www.conmebol.com,LIB2005002,
+2010,Copa Libertadores,Grupos,1,2010-02-28,Argentina,Buenos Aires,Monumental,River Plate,Belgrano,Argentina,Argentina,3,1,Local,CONMEBOL,www.conmebol.com,LIB2010001,
+2010,Copa Libertadores,Eliminatorias,Cuartos Ida,2010-08-15,Paraguay,Asunción,Defensores del Chaco,Cerro Porteño,Estudiantes,Paraguay,Argentina,0,1,Visitante,CONMEBOL,www.conmebol.com,LIB2010002,
+2010,Copa Libertadores,Eliminatorias,Cuartos Vuelta,2010-08-29,Argentina,La Plata,Jorge Luis Hirschi,Estudiantes,Cerro Porteño,Argentina,Paraguay,2,0,Local,CONMEBOL,www.conmebol.com,LIB2010003,
+2015,Copa Libertadores,Grupos,2,2015-03-05,Brasil,Sao Paulo,Morumbi,Sao Paulo FC,Atletico Mineiro,Brasil,Brasil,1,1,Empate,CONMEBOL,www.conmebol.com,LIB2015001,
+2015,Copa Libertadores,Eliminatorias,Semifinal Ida,2015-09-20,Argentina,Buenos Aires,Monumental,River Plate,Racing Club,Argentina,Argentina,1,0,Local,CONMEBOL,www.conmebol.com,LIB2015002,
+2015,Copa Libertadores,Eliminatorias,Final Ida,2015-10-10,Argentina,Buenos Aires,Monumental,River Plate,Boca Juniors,Argentina,Argentina,0,0,Empate,CONMEBOL,www.conmebol.com,LIB2015003,
+2015,Copa Libertadores,Eliminatorias,Final Vuelta,2015-10-24,Argentina,Buenos Aires,Monumental,River Plate,Boca Juniors,Argentina,Argentina,3,1,Local,CONMEBOL,www.conmebol.com,LIB2015004,Campeon: River Plate
+2016,Copa Libertadores,Grupos,1,2016-02-10,Paraguay,Asunción,Defensores del Chaco,Cerro Porteño,Libertad,Paraguay,Paraguay,2,2,Empate,CONMEBOL,www.conmebol.com,LIB2016001,
+2016,Copa Libertadores,Grupos,3,2016-04-05,Brasil,Rio de Janeiro,Vasco da Gama,Vasco da Gama,Santos,Brasil,Brasil,1,2,Visitante,CONMEBOL,www.conmebol.com,LIB2016002,
+2018,Copa Libertadores,Eliminatorias,Cuartos Ida,2018-09-10,Brasil,Rio de Janeiro,Maraca,Botafogo,Cruzeiro,Brasil,Brasil,0,1,Visitante,CONMEBOL,www.conmebol.com,LIB2018001,
+2018,Copa Libertadores,Eliminatorias,Semifinal Vuelta,2018-10-30,Colombia,Bogota,El Campín,Santa Fe,Millonarios,Colombia,Colombia,-1,2,Visitante,CONMEBOL,www.conmebol.com,LIB2018002,Goles local negativo: verificar
+2020,Copa Libertadores,Grupos,2,2020-11-15,Brasil,Sao Paulo,Morumbi,Sao Paulo FC,Sao Paulo FC,Brasil,Brasil,2,1,Inconsistente,CONMEBOL,www.conmebol.com,LIB2020001,Resultado inconsistente con marcador
+2022,Copa Libertadores,Grupos,1,2022-02-20,Argentina,La Plata,Jorge Luis Hirschi,Estudiantes,Velez Sarsfield,Argentina,Argentina,1,1,Empate,CONMEBOL,www.conmebol.com,LIB2022001,
+2022,Copa Libertadores,Eliminatorias,Final Ida,2022-10-15,Uruguay,Montevideo,Centenario,Peñarol,Flamengo,Uruguay,Brasil,0,1,Visitante,CONMEBOL,www.conmebol.com,LIB2022002,
+2022,Copa Libertadores,Eliminatorias,Final Vuelta,2022-10-29,Brasil,Rio de Janeiro,Maracanã,Flamengo,Peñarol,Brasil,Uruguay,1,0,Local,CONMEBOL,www.conmebol.com,LIB2022003,Campeon: Flamengo
+2023,Copa Libertadores,Grupos,1,2023-03-10,Paraguay,Asunción,Defensores del Chaco,Olimpia,Libertad,Paraguay,Paraguay,2,1,Local,CONMEBOL,www.conmebol.com,LIB2023001,
+2023,Copa Libertadores,Grupos,2,2023-04-05,Colombia,Medellin,Atanasio Girardot,Atletico Nacional,Deportivo Cali,Colombia,Colombia,3,0,Local,CONMEBOL,www.conmebol.com,LIB2023002,
+2023,Copa Libertadores,Grupos,1,2023-03-10,Paraguay,Asunción,Defensores del Chaco,Olimpia,Libertad,Paraguay,Paraguay,2,1,Local,CONMEBOL,www.conmebol.com,LIB2023001,Fila duplicada: verificar
+2023,Copa Libertadores,Eliminatorias,Cuartos Ida,2023-08-20,Brasil,Belo Horizonte,Mineirao,Atletico Mineiro,Palmeiras,Brasil,Brasil,0,2,Visitante,CONMEBOL,www.conmebol.com,LIB2023003,
+2024,Copa Libertadores,Grupos,3,2024-05-10,Argentina,Cordoba,Mario Alberto Kempes,Talleres,River Plate,Argentina,Argentina,2,2,Empate,CONMEBOL,www.conmebol.com,LIB2024001,
+2024,Copa Libertadores,Grupos,2,2024-04-15,Brasil,Salvador,Isidro Cerqueira da Rosa,Bahia,Corinthians,Brasil,Brasil,1,0,Local,CONMEBOL,www.conmebol.com,LIB2024002,
+1995,Copa Libertadores,Grupos,1,1995-09-20,Paraguay,Asunción,Defensores del Chaco,Cerro Porteño,Olimpia,Paraguay,Paraguay,1,1,Empate,CONMEBOL,www.conmebol.com,LIB1995001,Fecha fuera del rango: antes de 1996
+2025,Copa Libertadores,Grupos,1,2025-02-05,Argentina,Buenos Aires,Monumental,Boca Juniors,River Plate,Argentina,Argentina,2,1,Local,CONMEBOL,www.conmebol.com,LIB2025001,Fecha fuera del rango: despues de 2024
