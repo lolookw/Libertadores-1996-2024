@@ -36,6 +36,10 @@ No se incluyen métricas avanzadas (xG, árbitros, asistencia, penales).
 
 La fuente exacta de cada partido se indica en las columnas `fuente` y `url_fuente`.
 
+## Limitaciones conocidas
+
+- **Temporada 2011 no incluida**: el archivo RSSSF de 2011 utiliza un formato alternativo (sin guion como separador entre equipos en grupos, rangos de fechas en múltiples líneas, sufijos `x` para extra time). El parser v1 no cubre este formato. El dataset cubre 28 de las 29 temporadas del rango.
+
 ## Versionado
 Este documento describe el alcance del dataset versión v1.  
 Cambios futuros deberán documentarse en versiones posteriores.

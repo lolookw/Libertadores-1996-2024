@@ -19,7 +19,7 @@ def _rellenar_si_vacio(serie_base: pd.Series, serie_nueva: pd.Series) -> pd.Seri
     Rellena base con nueva SOLO cuando base está vacío/NaN.
     Considera "" como vacío.
     """
-    base = serie_base.copy()
+    base = serie_base.astype(object).copy()
     vacio = base.isna() | (base.astype(str).str.strip() == "")
     base.loc[vacio] = serie_nueva.loc[vacio]
     return base

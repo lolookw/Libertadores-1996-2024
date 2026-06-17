@@ -1,7 +1,7 @@
-# Copa Libertadores 1996–2024  
+# Copa Libertadores 1996–2024
 ### Dataset reproducible de partidos con QA, normalización y EDA
 
-## 📌 Descripción general
+## Descripción general
 
 Este proyecto construye un **dataset reproducible y auditable de partidos de Copa Libertadores entre 1996 y 2024**, a partir de fuentes textuales (RSSSF), aplicando parsing robusto, control de calidad (QA), normalización de entidades, enriquecimiento con metadatos y análisis exploratorio de datos (EDA).
 
@@ -9,7 +9,7 @@ El resultado es un **dataset listo para análisis**, documentado, versionado y e
 
 ---
 
-## 🎯 Objetivos del proyecto
+## Objetivos del proyecto
 
 - Construir un dataset histórico consistente de partidos de Copa Libertadores (1996–2024).
 - Garantizar reproducibilidad total desde datos crudos.
@@ -19,343 +19,173 @@ El resultado es un **dataset listo para análisis**, documentado, versionado y e
 
 ---
 
-## 🗂️ Estructura del repositorio
+## Estructura del repositorio
 
-# Copa Libertadores 1996–2024  
-### Dataset reproducible de partidos con QA, normalización y EDA
-
-## 📌 Descripción general
-
-Este proyecto construye un **dataset reproducible y auditable de partidos de Copa Libertadores entre 1996 y 2024**, a partir de fuentes textuales (RSSSF), aplicando parsing robusto, control de calidad (QA), normalización de entidades, enriquecimiento con metadatos y análisis exploratorio de datos (EDA).
-
-El resultado es un **dataset listo para análisis**, documentado, versionado y extensible, siguiendo buenas prácticas de ingeniería de datos y pensado como pieza publicable de un portfolio profesional.
-
----
-
-## 🎯 Objetivos del proyecto
-
-- Construir un dataset histórico consistente de partidos de Copa Libertadores (1996–2024).
-- Garantizar reproducibilidad total desde datos crudos.
-- Aplicar reglas de QA explícitas y documentadas.
-- Resolver problemas reales de datos históricos (formatos inconsistentes, nombres variables, información incompleta).
-- Dejar una base sólida para análisis, dashboards y modelos posteriores.
-
----
-
-## 🗂️ Estructura del repositorio
-
+```
 Libertadores-1996-2024/
 │
 ├── datos/
-│ ├── crudos/ # Archivos originales (.txt RSSSF)
-│ ├── procesados/ # CSV intermedios y finales
-│ └── referencias/ # Tablas maestras (equipos, alias)
+│   ├── rsssf/          # Archivos .txt RSSSF por temporada (1996–2024)
+│   ├── crudos/         # CSV generado por el parser (partidos_rsssf_raw.csv)
+│   ├── intermedios/    # CSV post-transformación, pre-QA
+│   ├── procesados/     # CSV validados y normalizados (dataset final)
+│   └── referencias/    # Tablas maestras (equipos_referencia.csv, equipos_alias.csv)
 │
 ├── src/
-│ ├── parser/ # Parsing de texto RSSSF
-│ └── referencias/ # Normalización y enriquecimiento
+│   ├── rsssf/          # Parser RSSSF y transformación a esquema v1
+│   ├── qa/             # Chequeos de calidad automáticos
+│   └── referencia/     # Normalización de alias y enriquecimiento
 │
 ├── notebooks/
-│ ├── 01_eda_inicial.ipynb
-│ └── 02_eda_enriquecido.ipynb
+│   └── 01_eda_mock.ipynb   # EDA exploratorio sobre el dataset procesado
 │
 ├── reportes/
-│ └── referencias/ # Reportes de QA y faltantes
+│   ├── qa/             # Reportes de registros inválidos por tipo de error
+│   └── referencias/    # Reporte de equipos sin match en tabla de referencia
 │
 ├── docs/
-│ ├── alcance_dataset.md
-│ ├── reglas_qa.md
-│ └── diccionario_datos.md
+│   ├── alcance_dataset_v1.md
+│   ├── reglas_qa.md
+│   ├── diccionario_datos.md
+│   └── decisiones.md
 │
-├── tests/ # Placeholder para tests futuros
-├── app/ # Placeholder para dashboard (Streamlit)
 └── README.md
-
+```
 
 ---
 
-## 📥 Fuente de datos
+## Fuente de datos
 
-- **RSSSF (Rec.Sport.Soccer Statistics Foundation)**  
+- **RSSSF (Rec.Sport.Soccer Statistics Foundation)**
   Fuente histórica ampliamente utilizada para estadísticas de fútbol.
 
-Características de la fuente:
-- Texto plano (`.txt`)
-- Formato no estructurado
-- Convenciones distintas entre fases (grupos vs eliminatorias)
+Características:
+- Texto plano (`.txt`), un archivo por temporada
+- Formato no estructurado con convenciones distintas entre fases (grupos vs. eliminatorias)
 - Nombres de equipos variables a lo largo del tiempo
 
 Esto motiva la construcción de un parser propio en lugar de scraping estructurado.
 
----
-
-## 🔄 Pipeline de datos
-
-### 1. Ingesta (datos crudos)
-- Descarga manual de archivos `.txt` por temporada (1996–2024).
-- Los archivos se almacenan **sin modificar** en `datos/crudos/`.
-
-### 2. Parsing RSSSF
-Se implementa un parser capaz de manejar dos grandes formatos:
-
-#### Fase de grupos
-Ejemplo:
-
-Mar 13: Barcelona - Espoli 3-2
-
-Se extraen:
-- fecha
-- equipo local
-- equipo visitante
-- goles
-
-#### Eliminatorias (ida y vuelta)
-Ejemplo:
-
-San José Bol Barcelona Ecu 1-0 1-2 2-2 2-4p
-
-Decisiones de diseño:
-- Se guarda el **resultado agregado** como texto (`agregado_texto`)
-- **No se parsean penales** en la versión v1
-- Cada serie eliminatoria se representa como una única observación
-
-Salida:
-
-datos/crudos/partidos_rsssf_raw.csv
+Los 29 archivos `.txt` (1996–2024) están commiteados en `datos/rsssf/`, lo que garantiza reproducibilidad sin acceso a internet.
 
 ---
 
-### 3. Transformación a esquema v1
-Se estandarizan columnas, tipos y convenciones.
+## Pipeline de datos
 
-Columnas principales:
-- `temporada`
-- `competicion`
-- `fase`
-- `instancia`
-- `fecha`
-- `equipo_local`
-- `equipo_visitante`
-- `goles_local`
-- `goles_visitante`
-- `resultado`
-- `fuente`
-- `archivo_fuente`
-- `linea_partido`
+El proceso se divide en cinco etapas secuenciales, cada una con entrada y salida explícitas:
 
-Salida:
+### 1. Parsing RSSSF
+```bash
+python src/rsssf/parser_rsssf.py
+```
+- Entrada: `datos/rsssf/*.txt`
+- Salida: `datos/crudos/partidos_rsssf_raw.csv`
 
+Parsea dos formatos: partidos de grupos (`Mar 13: Equipo A - Equipo B 3-2`) y series eliminatorias (`Equipo A Arg Equipo B Bra 1-0 1-2 2-2`).
 
-datos/procesados/partidos_rsssf_v1.csv
+### 2. Transformación a esquema v1
+```bash
+python src/rsssf/transformar_rsssf_a_v1.py
+```
+- Entrada: `datos/crudos/partidos_rsssf_raw.csv`
+- Salida: `datos/intermedios/partidos_rsssf.csv`
 
+Estandariza columnas, tipos y convenciones al esquema v1 (ver `docs/diccionario_datos.md`).
+
+### 3. QA automático
+```bash
+python src/qa/chequeos_qa.py
+```
+- Entrada: `datos/intermedios/partidos_rsssf.csv`
+- Salida: `datos/procesados/partidos_rsssf1_validos.csv` + `partidos_rsssf1_invalidos.csv`
+- Reportes: `reportes/qa/`
+
+Aplica las reglas documentadas en `docs/reglas_qa.md`.
+
+### 4. Normalización de equipos (alias)
+```bash
+python src/referencia/alias_robusto.py
+```
+- Entrada: `datos/procesados/partidos_rsssf1_validos.csv` + `datos/referencias/equipos_alias.csv`
+- Salida: `datos/procesados/partidos_rsssf1_validos_normalizado.csv`
+
+### 5. Enriquecimiento con metadatos
+```bash
+python src/referencia/enriquecer_partidos_con_referencia.py
+```
+- Entrada: `datos/procesados/partidos_rsssf1_validos_normalizado.csv` + `datos/referencias/equipos_referencia.csv`
+- Salida: `datos/procesados/partidos_rsssf1_enriquecido.csv`
+
+Incorpora país, ciudad y estadio de cada equipo desde la tabla maestra.
 
 ---
 
-## ✅ Control de Calidad (QA)
+## Control de Calidad (QA)
 
-El QA se implementa como un paso formal y documentado.
+Las reglas están documentadas en `docs/reglas_qa.md`. Resumen:
 
-### QA estructural
-- No existen duplicados según:
-  - temporada
-  - fecha
-  - equipo_local
-  - equipo_visitante
-- Tipos válidos:
-  - goles ≥ 0
-  - fechas válidas
-  - temporadas entre 1996 y 2024
+| Tipo | Regla |
+|------|-------|
+| Estructural | Sin duplicados por (temporada, fecha, local, visitante) |
+| Estructural | Goles ≥ 0, temporada entre 1996 y 2024 |
+| Lógica | `resultado` consistente con goles (L/V/E) |
+| Cobertura | Todas las temporadas presentes con al menos un partido |
 
-### QA lógica
-- Consistencia entre goles y resultado:
-  - goles_local > goles_visitante → "L"
-  - goles_local < goles_visitante → "V"
-  - goles_local = goles_visitante → "E"
+Los registros inválidos se excluyen del dataset final y se guardan en `reportes/qa/` para revisión manual.
 
-### QA de cobertura
-- Todas las temporadas entre 1996 y 2024 están presentes
-- Cada temporada tiene al menos un partido
+---
 
-### Manejo de errores
-- Registros inválidos se excluyen del dataset final
-- Los errores se reportan para revisión manual
+## Normalización de equipos
 
-Salida:
+RSSSF presenta múltiples variantes para un mismo club. La normalización se hace con una tabla explícita de alias (`datos/referencias/equipos_alias.csv`) en lugar de fuzzy matching, para garantizar reproducibilidad y trazabilidad. Ver `docs/decisiones.md` para el razonamiento completo.
 
+---
 
-datos/procesados/partidos_rsssf1_validos_normalizado.csv
+## Enriquecimiento con metadatos
 
+La tabla maestra `datos/referencias/equipos_referencia.csv` contiene país, ciudad y estadio de cada club. Se une al dataset normalizado para completar los campos de sede.
 
-## 🔤 Normalización de equipos
+---
 
-Problema:
-- RSSSF presenta múltiples variantes para un mismo club (abreviaturas, paréntesis, ciudades, cambios históricos).
+## Diccionario de datos
 
-Solución:
-- Se implementa una tabla explícita de alias:
+El esquema completo (21 columnas) está documentado en `docs/diccionario_datos.md`.
 
+---
 
-datos/referencias/equipos_alias.csv
-
-
-Formato:
-
-
-equipo_alias → equipo_canonico
-
-
-Ejemplo:
-
-
-San Lorenzo → San Lorenzo de Almagro
-Univ. de Chile → Universidad de Chile
-
-
-La normalización se aplica **sin modificar los datos crudos**, garantizando trazabilidad.
-
-
-## 🌍 Enriquecimiento con metadatos
-
-Se construye una tabla maestra de clubes:
-
-
-datos/referencias/equipos_referencia.csv
-
-
-Campos:
-- equipo (canónico)
-- país
-- ciudad
-- estadio_principal
-- fuente_referencia
-- notas
-
-El dataset de partidos se enriquece con:
-- `pais_local`
-- `pais_visitante`
-- `ciudad_sede`
-- `estadio` (aproximado: estadio del equipo local)
-
-Salida final:
-
-
-datos/procesados/partidos_rsssf1_enriquecido.csv
-
-
-Se generan reportes automáticos de clubes sin match para asegurar cobertura completa.
-
-
-## 📊 Análisis Exploratorio (EDA)
-
-Los notebooks incluyen análisis como:
-- Distribución de goles por partido
-- Participaciones por país
-- Partidos por estadio (aproximado)
-- Evolución temporal de partidos
-
-El EDA permite validar consistencia, detectar outliers y preparar visualizaciones posteriores.
-
-
-## 📁 Diccionario de datos
-
-El esquema completo del dataset se documenta en:
-
-
-docs/diccionario_datos.md
-
-
-Incluye:
-- nombre de columna
-- tipo
-- descripción
-- observaciones relevantes
-
-
-## ⚙️ Reproducibilidad
+## Reproducibilidad
 
 ### Requisitos
-- Python 3.11+
-- pandas
-- matplotlib
+- Python 3.10+
+- pandas, matplotlib, requests, lxml
 
 ### Setup
 ```bash
-python -m venv .venv
-.\.venv\Scripts\activate
+python3 -m venv .venv
+source .venv/bin/activate        # Linux/Mac
+# .venv\Scripts\activate         # Windows
 pip install -r requirements.txt
 ```
 
-# Pipeline de Procesamiento: Copa Libertadores (RSSSF)
-
-## ⚙️ Ejecución (Orden Lógico)
-
-El proceso se divide en etapas secuenciales donde cada paso genera archivos versionados y auditables:
-
-1. **Parsing RSSSF**: Extracción de datos desde las fuentes originales.
-2. **Transformación a esquema v1**: Adaptación de los datos al modelo de datos inicial.
-3. **QA (Quality Assurance)**: Validación de consistencia formal del pipeline.
-4. **Normalización de equipos**: Aplicación de alias explícitos para estandarizar nombres.
-5. **Enriquecimiento con referencias**: Incorporación de metadatos adicionales.
-6. **EDA (Exploratory Data Analysis)**: Análisis exploratorio inicial.
-
-## 📊 Análisis Exploratorio (EDA)
-
-Los notebooks incluyen análisis como:
-- **Distribución de goles por partido**: Histogramas de frecuencia de anotaciones.
-- **Participaciones por país**: Rendimiento ofensivo y participaciones nacionales.
-- **Partidos por estadio**: Visualización de sedes más frecuentes.
-- **Evolución temporal**: Tendencias de partidos y goles por temporada.
-
-El EDA permite validar consistencia, detectar outliers y preparar visualizaciones posteriores.
-
-## 📁 Diccionario de datos
-
-El esquema completo del dataset se documenta en:
-
-`docs/diccionario_datos.md`
-
-Incluye detalles de las 21 columnas procesadas:
-- **Nombre de columna**: (ej. `temporada`, `resultado_norm`, `goles_local`).
-- **Tipo**: (ej. `int64`, `object`, `float64`).
-- **Descripción**: Definición funcional de cada campo.
-- **Observaciones relevantes**: Notas sobre valores nulos o fuentes.
-
-## 🧠 Decisiones de Diseño
-
-- **Sin scraping dinámico**: Se optó por RSSSF debido a su estabilidad histórica frente a sitios dinámicos.
-- **Sin fuzzy matching automático**: Se prioriza el control y la trazabilidad manual de nombres.
-- **Alias explícitos**: El mapeo de equipos es transparente y revisable.
-- **Separación de datos**: Distinción clara entre datos crudos, procesados y referencias.
-
-## 🚀 Próximos Pasos (v2)
-
-- **Parsing de penales**: Detalle de definiciones desde los doce pasos.
-- **Estructura de llaves**: Separación de partidos de ida y vuelta.
-- **Dashboard**: Integración con Streamlit para visualización interactiva.
-- **Métricas avanzadas**: Implementación de modelos xG y ELO.
-
-## ⚙️ Reproducibilidad
-
-### Requisitos
-- **Python 3.11+**
-- **pandas**
-- **matplotlib**
-
-### Setup
+### Ejecución completa
 ```bash
-# Crear entorno virtual
-python -m venv .venv
-
-# Activar entorno (Windows)
-.\.venv\Scripts\activate
-
-# Instalar dependencias
-pip install -r requirements.txt
+python src/rsssf/parser_rsssf.py
+python src/rsssf/transformar_rsssf_a_v1.py
+python src/qa/chequeos_qa.py
+python src/referencia/alias_robusto.py
+python src/referencia/enriquecer_partidos_con_referencia.py
 ```
 
-## 📌 Estado del Proyecto
-- **Versión: v1**
+---
 
-- **Estado: Terminado y publicable.**
+## Estado del Proyecto
 
-- **Calidad: QA OK, cobertura completa y dataset reproducible.**
+- **Versión**: v1
+- **Estado**: Terminado y publicable.
+- **Cobertura**: 29 temporadas (1996–2024), dataset con QA aplicado y normalización completa.
+
+## Próximos pasos (v2)
+
+- Parsing de penales y estructura de llaves (ida/vuelta separadas)
+- Dashboard interactivo con Streamlit
+- Métricas avanzadas (xG, ELO por club)
