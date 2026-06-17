@@ -193,7 +193,7 @@ El dataset tiene gaps conocidos que el parser no puede resolver automáticamente
 
 | Gap | Filas estimadas |
 |-----|----------------|
-| Grupos 1997, 1998, 2011, 2012 | ~375 |
+| Grupos 1997, 1998, 2012 | ~215 |
 | Eliminatorias 2000–2024 | ~400 |
 
 El archivo `docs/prompt_completar_datos.md` tiene un prompt listo para enviar a Claude u otra IA y obtener las filas faltantes en formato CSV. Una vez generadas, incorporarlas con:
@@ -209,7 +209,7 @@ Ver `reportes/auditoria_enhanced.md` para la tabla completa de cobertura por tem
 ## Estado del Proyecto
 
 - **Versión**: v1
-- **Estado**: Publicable. Dataset enhanced con QA aplicado, 2281 partidos, 28 temporadas.
+- **Estado**: Publicable. Dataset enhanced con QA aplicado, 2575 partidos, 29 temporadas (1996–2024 completas).
 - **Archivo para modelos**: `datos/procesados/partidos_rsssf1_enhanced.csv`
 - **Contexto para Claude Code**: `CLAUDE.md`
 

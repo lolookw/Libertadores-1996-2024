@@ -14,9 +14,9 @@ El dataset alimenta `Modelo-Libertadores` (en `/home/lolo/Desktop/coding/Modelo-
 
 | Métrica | Valor |
 |---------|-------|
-| Total partidos | 2281 |
-| Temporadas | 28/29 (falta 2011) |
-| Cobertura grupos | Alta (2004–2024 completo) |
+| Total partidos | 2575 |
+| Temporadas | 29/29 |
+| Cobertura grupos | Alta (todas las temporadas presentes) |
 | Cobertura eliminatorias | Baja — solo 1996–1999 |
 
 ### Gaps conocidos
@@ -25,8 +25,7 @@ El dataset alimenta `Modelo-Libertadores` (en `/home/lolo/Desktop/coding/Modelo-
 |-----|---------|-------|
 | 1997 | Sin grupos (~60 filas) | Formato RSSSF sin espacios alrededor del guion |
 | 1998 | Grupos parciales (~50 filas) | Mismo problema |
-| 2011 | Sin datos (0 filas) | Formato RSSSF alternativo (multi-línea, sin guion) |
-| 2012 | Sin grupos (1 fila parseable) | Mismo formato que 2011 |
+| 2012 | Grupos parciales (~105 filas) | Formato sin guion entre equipos |
 | 2000–2024 | Sin eliminatorias (~400 filas) | Parser no maneja fechas cross-month en bloques multi-línea |
 
 **Para completar estos datos**: ver `docs/prompt_completar_datos.md`.

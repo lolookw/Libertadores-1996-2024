@@ -12,7 +12,6 @@ Correcciones aplicadas:
 Limitaciones documentadas (requieren completado manual o via IA):
   - 1997: grupos no parseados (formato sin espacios alrededor del guion)
   - 1998: grupos parcialmente parseados
-  - 2011: temporada completa ausente (formato RSSSF alternativo)
   - 2012: grupos casi ausentes (formato sin guion entre equipos)
   - Eliminatorias 2000-2024: no parseadas (ver docs/prompt_completar_datos.md)
 """
@@ -102,13 +101,12 @@ def generar_auditoria(df: pd.DataFrame) -> str:
         "|-----|------------|---------------------------|",
         "| 1997 | Grupos completos (formato RSSSF sin espacio) | ~60 |",
         "| 1998 | Grupos parciales (misma causa) | ~50 |",
-        "| 2011 | Temporada completa (formato alternativo) | ~160 |",
         "| 2012 | Grupos casi completos (formato sin guion) | ~105 |",
         "| 2000–2024 | Eliminatorias (Octavos, Cuartos, Semifinal, Final) | ~400 |",
         "",
-        "**Total estimado de filas faltantes**: ~775 partidos adicionales.",
+        "**Total estimado de filas faltantes**: ~615 partidos adicionales.",
         "",
-        "Con esas filas, el dataset pasaría de ~2281 a ~3050 partidos.",
+        "Con esas filas, el dataset pasaría de ~2575 a ~3190 partidos.",
     ]
 
     return "\n".join(lineas) + "\n"
