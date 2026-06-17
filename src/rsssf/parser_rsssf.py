@@ -14,16 +14,27 @@ MESES = {
 
 # ====== REGEX ======
 
-# Partidos de grupos:
+# Partidos de grupos formato estándar:
 # "Mar 13: Minervén - Caracas F.C.                4-2"
 RE_PARTIDO_GRUPOS = re.compile(
     r"^(?P<mes>[A-Za-z]{3})\s+(?P<dia>\d{1,2})\:\s+"
     r"(?P<local>.+?)\s+\-\s+(?P<visitante>.+?)\s+"
-    r"(?P<goles_local>\d+)\-(?P<goles_visitante>\d+)\s*$"
+    r"(?P<goles_local>\d+)\-(?P<goles_visitante>\d+)[a-zA-Z*]*\s*$"
 )
 
-# "Group 5" o "Group 5 [Argentina, Venezuela]"
-RE_GRUPO = re.compile(r"^Group\s+(?P<grupo>\d+).*$")
+# Partidos de grupos formato alternativo (2011, 2012, algunos 1997):
+# "Feb 15: San Luis  Libertad                   1-2"
+# "Feb 22: Univ. San Martín  San Luis           2-0x"
+# Equipos separados por 2+ espacios; score puede tener sufijo (x=extra time, y, *)
+RE_PARTIDO_GRUPOS_ALT = re.compile(
+    r"^(?P<mes>[A-Za-z]{3})\s{1,2}(?P<dia>\d{1,2})\:\s+"
+    r"(?P<local>.+?)\s{2,}"
+    r"(?P<visitante>.+?)\s+"
+    r"(?P<goles_local>\d+)\-(?P<goles_visitante>\d+)[a-zA-Z*]*\s*$"
+)
+
+# "Group 5", "Group A", "Group 5 [Argentina, Venezuela]"
+RE_GRUPO = re.compile(r"^Group\s+(?P<grupo>\w+).*$")
 
 # Tabla de posiciones: " 1.River Plate ... 14- 3 14"
 RE_TABLA = re.compile(r"^\s*\d+\.\s*.+\s+\d+\s+\d+\s+\d+\s+\d+\s+.+$")
@@ -143,7 +154,9 @@ def parsear_archivo_rsssf(ruta_txt: Path, temporada: int, fuente: str = "RSSSF")
 
     i = 0
     while i < len(lineas):
-        linea = lineas[i].rstrip()
+        # normalizar variantes de guion antes de cualquier match
+        # \x96 = en-dash cp1252, u2013 = en-dash unicode, u2014 = em-dash
+        linea = lineas[i].rstrip().replace("\x96", "-").replace("–", "-").replace("—", "-")
 
         if not linea.strip():
             i += 1
@@ -199,8 +212,11 @@ def parsear_archivo_rsssf(ruta_txt: Path, temporada: int, fuente: str = "RSSSF")
             i += 1
             continue
 
-        # partido de grupos
-        m_pg = RE_PARTIDO_GRUPOS.match(linea.strip())
+        # partido de grupos (estándar, luego formato alternativo)
+        _m_std = RE_PARTIDO_GRUPOS.match(linea.strip())
+        _m_alt = RE_PARTIDO_GRUPOS_ALT.match(linea.strip())
+        # usar ALT solo si visitante no queda en blanco (evita falsos positivos en 1997)
+        m_pg = _m_std or (_m_alt if _m_alt and _m_alt.group("visitante").strip() else None)
         if m_pg:
             mes = m_pg.group("mes")
             dia = int(m_pg.group("dia"))

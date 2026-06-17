@@ -118,6 +118,15 @@ python src/referencia/enriquecer_partidos_con_referencia.py
 
 Incorpora país, ciudad y estadio de cada equipo desde la tabla maestra.
 
+### 6. Dataset enhanced (correcciones finales + auditoría)
+```bash
+python src/pipeline/generar_enhanced.py
+```
+- Entrada: `datos/procesados/partidos_rsssf1_enriquecido.csv`
+- Salida: `datos/procesados/partidos_rsssf1_enhanced.csv` + `reportes/auditoria_enhanced.md`
+
+Aplica correcciones programáticas (forward-fill de instancias de grupo faltantes) y genera un reporte detallado de cobertura. **Este es el archivo final para usar en modelos.**
+
 ---
 
 ## Control de Calidad (QA)
@@ -178,11 +187,31 @@ python src/referencia/enriquecer_partidos_con_referencia.py
 
 ---
 
+## Completar datos con IA
+
+El dataset tiene gaps conocidos que el parser no puede resolver automáticamente:
+
+| Gap | Filas estimadas |
+|-----|----------------|
+| Grupos 1997, 1998, 2011, 2012 | ~375 |
+| Eliminatorias 2000–2024 | ~400 |
+
+El archivo `docs/prompt_completar_datos.md` tiene un prompt listo para enviar a Claude u otra IA y obtener las filas faltantes en formato CSV. Una vez generadas, incorporarlas con:
+
+```bash
+python src/pipeline/fusionar_datos_ia.py datos/externos/completado_ia_YYYY.csv
+```
+
+Ver `reportes/auditoria_enhanced.md` para la tabla completa de cobertura por temporada y fase.
+
+---
+
 ## Estado del Proyecto
 
 - **Versión**: v1
-- **Estado**: Terminado y publicable.
-- **Cobertura**: 29 temporadas (1996–2024), dataset con QA aplicado y normalización completa.
+- **Estado**: Publicable. Dataset enhanced con QA aplicado, 2281 partidos, 28 temporadas.
+- **Archivo para modelos**: `datos/procesados/partidos_rsssf1_enhanced.csv`
+- **Contexto para Claude Code**: `CLAUDE.md`
 
 ## Próximos pasos (v2)
 
