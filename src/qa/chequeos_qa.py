@@ -135,7 +135,7 @@ def main():
     df_invalidos.to_csv(CARPETA_PROCESADOS / "partidos_rsssf1_invalidos.csv", index=False)
 
     # Resumen
-    print("=== QA DATASET LIBERTADORES (MOCK) ===\n")
+    print("=== QA DATASET LIBERTADORES ===\n")
     print(f"Total de filas: {len(df)}")
     print(f"Filas válidas: {len(df_validos)}")
     print(f"Filas inválidas: {len(df_invalidos)}\n")

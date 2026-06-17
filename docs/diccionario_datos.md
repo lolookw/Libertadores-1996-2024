@@ -42,4 +42,13 @@
 | fuente | str | Fuente de los datos |
 | url_fuente | str | URL de origen |
 | id_partido_fuente | str | Identificador en la fuente (si existe) |
-| observaciones | str | Comentarios o aclaraciones |
+| observaciones | str | Comentarios o aclaraciones (incluye el agregado de series eliminatorias) |
+
+## Columnas derivadas (generadas por el pipeline de QA)
+
+| Columna | Tipo | Descripción |
+|------|----|------------|
+| resultado_norm | str | Resultado normalizado a valores canónicos: `L` (local), `V` (visitante), `E` (empate). `NaN` indica valor no reconocible. |
+| fecha_parseada | datetime | Fecha parseada como tipo datetime. `NaT` indica fecha inválida o no parseable. |
+
+> Estas columnas son generadas por `src/qa/chequeos_qa.py` y persisten en el dataset exportado. `resultado_norm` y `fecha_parseada` sirven como base para los chequeos de consistencia y fechas inválidas respectivamente.

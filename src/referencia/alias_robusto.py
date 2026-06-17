@@ -3,7 +3,7 @@ import pandas as pd
 import unicodedata
 import re
 
-RUTA_ENTRADA = Path("datos/procesados/partidos_rsssf1_validos_normalizado.csv")
+RUTA_ENTRADA = Path("datos/procesados/partidos_rsssf1_validos.csv")
 RUTA_ALIAS = Path("datos/referencias/equipos_alias.csv")
 RUTA_SALIDA = Path("datos/procesados/partidos_rsssf1_validos_normalizado.csv")  # pisa, cambiá si querés
 RUTA_REPORTE = Path("reportes/referencias/alias_no_aplicados.csv")
